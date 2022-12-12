@@ -17,9 +17,15 @@ import { FormsModule } from '@angular/forms';
     StoreModule,
     RouterModule.forRoot([
       {
-        path: 'books', component: StoreComponent,
+        path: '',
+        redirectTo: 'books',
+        pathMatch: 'full',
       },
-      { path: '**', redirectTo: '/books' },
+      {
+        path: 'books',
+        component: StoreComponent,
+      },
+      { path: '**', redirectTo: 'books' },
     ]),
     BrowserAnimationsModule,
     FormsModule,

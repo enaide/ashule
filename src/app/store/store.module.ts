@@ -16,10 +16,10 @@ let routing = RouterModule.forChild([
     children: [
       { path: 'books', component: BookListComponent },
       { path: 'books/:id/details', component: BookDetailComponent },
-      { path: '**', redirectTo: 'store' },
+      { path: '**', redirectTo: 'books' },
     ],
   },
-  { path: '**', redirectTo: 'auth' },
+  { path: '**', redirectTo: 'books' },
 ]);
 
 @NgModule({
