@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand navbar-primary" aria-label="Second navbar example">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Recently searchs:</a>
+
+      <div class="navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item" *ngFor="let serachTerm of searchList;let searchIndex= index">
+            <a class="nav-link active" aria-current="page" href="javascript:void(0)" (click)="searchByTerm(serachTerm)">
+              Search #{{searchIndex+1}}
+            </a>
+          </li>
+        </ul>
+        <form>
+          <input class="form-control" type="text" placeholder="Search" aria-label="Search" (keydown.enter)="search($any($event).target.value)">
+        </form>
+      </div>
+    </div>
+  </nav>

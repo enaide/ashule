@@ -1,0 +1,46 @@
+<main class="container-fluid">
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ISBN</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author(s)</th>
+            <th scope="col">Price</th>
+            <th scope="col">Published Date</th>
+            <th scope="col">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="_bookService.dataObs$ | async as bookList">
+            <ng-container *ngIf="bookList.length > 0; else noBooks">
+              <tr *ngFor="let book of bookList">
+                <th scope="row">
+                  <img src={{book.firstThumbnailUrl}} height="100px" width="90px" (click)="imgRedirect(book)"/>
+                  {{book.isbn}}
+                </th>
+                <td>{{book.title}}</td>
+                <td>{{book.authors}}</td>
+                <td>{{book.price}} €</td>
+                <td>{{book.published |date:'dd/MM/yyyy'}}</td>
+                <td>
+                  <star-rating [rating]="book.rating"></star-rating>
+                  <!-- {{book.rating}} -->
+                </td>
+              </tr>
+            </ng-container>
+
+            <ng-template #noBooks>
+              <tr>
+                <td colspan="6">
+                  <div class="flex-container">
+                    <div class="text-center notify-text ml-4 mt-3">Empty result.</div>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </main>
