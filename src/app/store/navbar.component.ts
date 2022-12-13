@@ -19,11 +19,12 @@ export class NavBarComponent {
       this.searchList.shift();
     }
     this._bookService.onSerachTerm.next(keyword);
+    // this._router.navigate(['/books'],{ queryParams: { searchTerm: keyword } });
   }
 
   searchByTerm(searchTerm: string) {
-    this._bookService.onSerachTerm.next(searchTerm);
-    // this._bookService.onNavBarSerachTerm.next(searchTerm);
+    // this._bookService.onSerachTerm.next(searchTerm);
+    this._router.navigate(['/books'],{ queryParams: { searchTerm: searchTerm } });
   }
 
 }

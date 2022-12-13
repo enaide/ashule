@@ -12,7 +12,7 @@ import { off } from 'process';
 })
 export class BookListComponent implements OnInit {
   searchTerm: boolean | undefined;
-  dataObs$: Observable<Book[]> = new Observable<Book[]>();
+  // dataObs$: Observable<Book[]> = new Observable<Book[]>();
 
   constructor(
     public _bookService: AshuleRestService,
@@ -21,7 +21,15 @@ export class BookListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
+    this.route.queryParams.pipe(filter((params: any) => params.searchTerm),
+      // switchMap((params) => {
+      //   this._bookService.dataObs$ = this._bookService.getBooksByTerm(params.searchTerm).pipe(map((books) => books));
+      //   return this._bookService.dataObs$;
+      // }),
+      // map(result => result)
+    ).subscribe(params => {
+      this._bookService.onSerachTerm.next(params.searchTerm);
+    });
   }
 
   imgRedirect(b: Book) {
